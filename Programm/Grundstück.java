@@ -1,7 +1,10 @@
 package Programm;
 
 public class Grundstück extends Immobilie {
-	public Grundstück(double flaecheG, double kaufPreis) {
-		super(flaecheG, kaufPreis);
+	public Grundstück(double preis, String adresseStrasse, String adresseNummer, String adresseStadt, double flaecheG) {
+		super(preis, adresseStrasse, adresseNummer, adresseStadt, flaecheG);
+	}
+
+	public Grundstück() {
 	}
 }
