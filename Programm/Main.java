@@ -18,15 +18,19 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		//Generation Immo Objekte zu Prüfung
 		System.out.println(Dateien.immobilieList);
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < 30; i++){
 			ImmoGenerator generator = new ImmoGenerator();
 			generator.wohnungMieteGenerator();
+			generator.wohnungKaufGenerator();
+			generator.hausKaufGenerator();
+			//generator.hausMieteGenerator();
+			generator.grundstückKaufGenerator();
 		}
 
-		for (Immobilie immobilie : Dateien.immobilieList) {
-			System.out.println(immobilie);
-		}
+		BenutzerOberflaeche.programm();
+
 
 	}
 }
