@@ -9,26 +9,15 @@ Aufrufe Menu un Programm
 Erzeugung Immobilien Objekte
  */
 
-/*
-public Wohnung(MietKauf preisMK, double preis, String adresseStrasse, String adresseNummer, String adresseStadt, int adressePLZ, double flaeche, int zimmerN, int zimmerS, char energieKlasse) {
-
-	}
- */
 public class Main {
 
 	public static void main(String[] args) {
 
+		Wohnung prueba = new Wohnung(ImmoTyp.Wohnung,MietKauf.Miete,300,"Nestor Kirchner","123","Santa Cruz",120.00,6,3, Immobilie.charToEnergieKlasse('A'));
 		//Generation Immo Objekte zu Prüfung
-		System.out.println(Dateien.immobilieList);
-		for(int i = 0; i < 30; i++){
-			ImmoGenerator generator = new ImmoGenerator();
-			generator.wohnungMieteGenerator();
-			generator.wohnungKaufGenerator();
-			generator.hausKaufGenerator();
-			//generator.hausMieteGenerator();
-			generator.grundstückKaufGenerator();
-		}
+		Dateien.immoRandomObjekte(2,2,10); // Generiert Random Immo-Objekte
 
+		//Ausführung des Programms
 		BenutzerOberflaeche.programm();
 
 

@@ -1,13 +1,17 @@
 package Programm;
 
 /*
-TODO
-Objekt Grundstück,Wohnung, Grundstück + Haus, Haus
+Immobilie Objekte Eltern-Klass
+Deklarierte enums für Kauf/Miete, EnergieKlassen und Immobilien Typ.
+
+Objekt Grundstück, Wohnung, Grundstück + Haus, Haus
 Attribute: Mietpreis, Kaufpreis, Wärmeklasse, qm
-Attribute? Stöcke? Zimmern?
+
  */
+
+
 enum MietKauf{
-	Miete, Kauf;
+	Miete, Kauf,Unbknt;
 
 	@Override
 	public String toString() {
@@ -15,24 +19,21 @@ enum MietKauf{
 	}
 }
 enum EnergieKlasse{
-	A,B,C,D
+	A,B,C,D,Unbknt
 }
 enum ImmoTyp{
 	Grundstück,
 	Haus,
-	Wohnung;
+	Wohnung,
+	Unbknt;
 	@Override
 	public String toString() {
-		switch (this){
-			case Haus:
-				return "HAUS";
-			case Wohnung:
-				return "WOHNUNG";
-			case Grundstück:
-				return "GRUNDSTÜCK";
-			default:
-				return "Unbekannt";
-		}
+		return switch (this) {
+			case Haus -> "HAUS";
+			case Wohnung -> "WOHNUNG";
+			case Grundstück -> "GRUNDSTÜCK";
+			default -> "Unbekannt";
+		};
 
 
 	}
@@ -112,7 +113,7 @@ public class Immobilie {
 		this.preis = preis;
 	}
 	public String getAdresse() {
-		return this.adresseStrasse + " " + adresseNummer.toString();
+		return this.adresseStrasse + " " + adresseNummer;
 	}
 	public String getAdresseStrasse() {
 		return adresseStrasse;
@@ -168,14 +169,32 @@ public class Immobilie {
 	public void setEnergieKlasse(EnergieKlasse energieKlasse) {
 		this.energieKlasse = energieKlasse;
 	}
+	public static EnergieKlasse charToEnergieKlasse(char energieKlasse) {
+		return switch (energieKlasse) {
+			case 'A','a' -> EnergieKlasse.A;
+			case 'B','b' -> EnergieKlasse.B;
+			case 'C','c' -> EnergieKlasse.C;
+			case 'D','d' -> EnergieKlasse.D;
+			default -> EnergieKlasse.Unbknt;
+		};
+	}
+	public static MietKauf charToMietKauf(String mietkauf) {
+		if(mietkauf.equalsIgnoreCase("M")){
+			return MietKauf.Miete;
+		} else if (mietkauf.equalsIgnoreCase("K")) {
+			return MietKauf.Kauf;
+		}
+		return MietKauf.Unbknt;
+	}
+
 
 	public String printPreis(int precio) {
 		if (precio < 1000) {
 			return String.valueOf(precio);
 		} else if (precio <= 99_999) {
-			return String.valueOf(precio/1000) + "." + java.lang.String.valueOf(precio%1000);
+			return String.valueOf(precio/1000) + "." + precio % 1000;
 		} else {
-			return String.valueOf(precio/1000) + "." + java.lang.String.valueOf(precio%1000);
+			return String.valueOf(precio/1000) + "." + precio % 1000;
 		}
 	}
 

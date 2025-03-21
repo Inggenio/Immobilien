@@ -13,11 +13,11 @@ public class Grundstück extends Immobilie {
 	public String toString() {
 		return ImmoTyp.Grundstück.toString() +
 				" Kauf-Preis " + printPreis(preis) + "€" +
-				" - Adresse: " +
+				"\t - Adresse: " +
 				adresseStrasse + " " +
 				adresseNummer + ", "+
 				adresseStadt +
-				" Gründstücksfläche = " + flaecheG + "m²";
+				" - Gründstücksfläche = " + flaecheG + "m²";
 
 	}
 }
