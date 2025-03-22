@@ -91,10 +91,10 @@ public class BenutzerOberflaeche {
 					filternImmoTyp();
 					break;
 				case 2:
-					filternPreis();
+					filterPreis();
 					break;
 				case 3:
-					filternFlaeche();
+					filterFlaeche();
 					break;
 				case 4:
 					filterEnergieKlasse();
@@ -169,7 +169,7 @@ public class BenutzerOberflaeche {
 
 	}
 
-	public static void filternPreis(){
+	public static void filterPreis(){
 		boolean filterLoop = true;
 		Scanner filterLoopConsole = new Scanner(System.in);
 		ArrayList<Immobilie> filterteList = new ArrayList<>(Dateien.immobilieList);
@@ -222,7 +222,7 @@ public class BenutzerOberflaeche {
 		}
 	}
 
-	public static void filternFlaeche(){
+	public static void filterFlaeche(){
 		boolean filterLoop = true;
 		Scanner filterLoopConsole = new Scanner(System.in);
 		ArrayList<Immobilie> filterteList = new ArrayList<>(Dateien.immobilieList);
