@@ -10,6 +10,8 @@ Attribute: Mietpreis, Kaufpreis, Wärmeklasse, qm
  */
 
 
+import java.util.Random;
+
 enum MietKauf{
 	Miete, Kauf,Unbknt;
 
@@ -22,7 +24,7 @@ enum EnergieKlasse{
 	A,B,C,D,Unbknt
 }
 enum ImmoTyp{
-	Grundstück,
+	Grundstuck,
 	Haus,
 	Wohnung,
 	Unbknt;
@@ -31,7 +33,7 @@ enum ImmoTyp{
 		return switch (this) {
 			case Haus -> "HAUS";
 			case Wohnung -> "WOHNUNG";
-			case Grundstück -> "GRUNDSTÜCK";
+			case Grundstuck -> "GRUNDSTÜCK";
 			default -> "Unbekannt";
 		};
 
@@ -40,66 +42,77 @@ enum ImmoTyp{
 }
 
 public class Immobilie {
+	protected int iD;
 	protected ImmoTyp immoTyp;
 	protected MietKauf preisMK;
 	protected int preis;
 
 	protected String adresse;
-	protected String adresseStrasse;
-	protected String adresseNummer;
-	protected String adresseStadt;
+	protected String stadt;
 
-	protected double flaecheG;
-	protected double flaeche;
+	protected int flaecheG;
+	protected int flaeche;
 
-	protected int zimmerN;
-	protected int zimmerS;
+	protected int zimmer;
 	protected EnergieKlasse energieKlasse;
+	protected double preisqm;
 
 
 	//Leer Konstruktor
 	public Immobilie() {
 	}
 	//Konstruktor: Grundstück: GrundstückFäche, Preis,
-		public Immobilie(ImmoTyp immoTyp,int preis, String adresseStrasse, String adresseNummer, String adresseStadt, double flaecheG) {
+		public Immobilie(ImmoTyp immoTyp,int preis, String adresse, String stadt, int flaecheG) {
+		this.iD = idGen.nextInt(100,999);
 		this.immoTyp = immoTyp;
 		this.preisMK = MietKauf.Kauf;
 		this.preis = preis;
-		this.adresseStrasse = adresseStrasse;
-		this.adresseNummer = adresseNummer;
-		this.adresseStadt = adresseStadt;
+		this.adresse = adresse;
+		this.stadt = stadt;
 		this.flaecheG = flaecheG;
 	}
 	//Konstruktor: MietKauf Haus + Grundstück: Kaufpreis, Zimmer, Energieklasse
-	public Immobilie(ImmoTyp immoTyp,MietKauf preisMK, int preis, String adresseStrasse, String adresseNummer, String adresseStadt, double flaecheG, double flaeche, int zimmerN, int zimmerS, EnergieKlasse energieKlasse) {
+	public Immobilie(ImmoTyp immoTyp, MietKauf preisMK, int preis, String adresse, String stadt, int flaecheG, int flaeche, int zimmer, EnergieKlasse energieKlasse) {
+		this.iD = idGen.nextInt(100,999);
 		this.immoTyp = immoTyp;
 		this.preisMK = preisMK;
 		this.preis = preis;
-		this.adresseStrasse = adresseStrasse;
-		this.adresseNummer = adresseNummer;
-		this.adresseStadt = adresseStadt;
+		this.adresse = adresse;
+		this.stadt = stadt;
 		this.flaecheG = flaecheG;
 		this.flaeche = flaeche;
-		this.zimmerN = zimmerN;
-		this.zimmerS = zimmerS;
+		this.zimmer = zimmer;
 		this.energieKlasse = energieKlasse;
 	}
 
 	//Konstruktor Miete/Kauf: Wohnung | Haus(ohne Grundstück)
-		public Immobilie(ImmoTyp immoTyp, MietKauf preisMK, int preis, String adresseStrasse, String adresseNummer, String adresseStadt, double flaeche, int zimmerN, int zimmerS, EnergieKlasse energieKlasse) {
+		public Immobilie(ImmoTyp immoTyp, MietKauf preisMK, int preis, String adresse, String stadt, int flaeche, int zimmer, EnergieKlasse energieKlasse) {
+		this.iD = idGen.nextInt(100,999);
 		this.immoTyp = immoTyp;
 		this.preisMK = preisMK;
 		this.preis = preis;
-		this.adresseStrasse = adresseStrasse;
-		this.adresseNummer = adresseNummer;
-		this.adresseStadt = adresseStadt;
+		this.adresse = adresse;
+		this.stadt = stadt;
 		this.flaeche = flaeche;
-		this.zimmerN = zimmerN;
-		this.zimmerS = zimmerS;
+		this.zimmer = zimmer;
 		this.energieKlasse = energieKlasse;
 	}
 
 	//Getters und Setters
+	public int getiD() {
+		return iD;
+	}
+
+	public void setiD(int iD) {
+		this.iD = iD;
+	}
+
+	public ImmoTyp getImmoTyp() {
+		return immoTyp;
+	}
+	public void setImmoTyp(ImmoTyp immoTyp) {
+		this.immoTyp = immoTyp;
+	}
 	public MietKauf getPreisMK() {
 		return preisMK;
 	}
@@ -113,54 +126,44 @@ public class Immobilie {
 		this.preis = preis;
 	}
 	public String getAdresse() {
-		return this.adresseStrasse + " " + adresseNummer;
+		return this.adresse;
 	}
-	public String getAdresseStrasse() {
-		return adresseStrasse;
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
-	public void setAdresseStrasse(String adresseStrasse) {
-		this.adresseStrasse = adresseStrasse;
+
+	public String getStadt() {
+		return stadt;
 	}
-	public String getAdresseNummer() {
-		return adresseNummer;
-	}
-	public void setAdresseNummer(String adresseNummer) {
-		this.adresseNummer = adresseNummer;
-	}
-	public String getAdresseStadt() {
-		return adresseStadt;
-	}
-	public void setAdresseStadt(String adresseStadt) {
-		this.adresseStadt = adresseStadt;
+	public void setStadt(String stadt) {
+		this.stadt = stadt;
 	}
 	public double getFlaecheG() {
 		return flaecheG;
 	}
-	public void setFlaecheG(double flaecheG) {
+	public void setFlaecheG(int flaecheG) {
 		this.flaecheG = flaecheG;
 	}
 	public double getFlaeche() {
 		return flaeche;
 	}
-	public void setFlaeche(double flaeche) {
+	public void setFlaeche(int flaeche) {
 		this.flaeche = flaeche;
 	}
-	public int getZimmerN() {
-		return zimmerN;
+	public int getZimmer() {
+		return zimmer;
 	}
-	public void setZimmerN(int zimmerN) {
-		this.zimmerN = zimmerN;
-	}
-	public int getZimmerS() {
-		return zimmerS;
-	}
-	public void setZimmerS(int zimmerS) {
-		if(zimmerS < zimmerN - 1){
-			this.zimmerS = zimmerS;
-		} else {
-			zimmerS = zimmerN -1;
+	public void setZimmer(int zimmer) {
+		if(zimmer >=0 ){
+			this.zimmer = zimmer;	
 		}
+		System.out.println("Es gab ein Fehler");
+		
 	}
+
+	//Methoden
+	Random idGen = new Random();
 
 	public EnergieKlasse getEnergieKlasse() {
 		return energieKlasse;
@@ -169,12 +172,25 @@ public class Immobilie {
 	public void setEnergieKlasse(EnergieKlasse energieKlasse) {
 		this.energieKlasse = energieKlasse;
 	}
+
+	public double getPreisqm() {
+		return preisqm;
+	}
+
+	public void setPreisqm(double preisqm) {
+		if (immoTyp == ImmoTyp.Grundstuck){
+			this.preisqm = (double) preis/flaecheG;
+		}
+		this.preisqm = (double) preis /flaeche;
+	}
+
 	public static EnergieKlasse charToEnergieKlasse(char energieKlasse) {
 		return switch (energieKlasse) {
 			case 'A','a' -> EnergieKlasse.A;
 			case 'B','b' -> EnergieKlasse.B;
 			case 'C','c' -> EnergieKlasse.C;
 			case 'D','d' -> EnergieKlasse.D;
+
 			default -> EnergieKlasse.Unbknt;
 		};
 	}
@@ -203,14 +219,12 @@ public class Immobilie {
 	@Override
 	public String toString() {
 		return "Adresse: " +
-				adresseStrasse + " " +
-				adresseNummer + ", "+
-				adresseStadt +
+				adresse + " " +
+				stadt +
 				" <| Typ=" + (this.preisMK == MietKauf.Kauf? "Kauf": "Miete") +
 				" Preis " + printPreis(preis) + "€" +
 				"|> Fläche= " + flaeche +
-				" #Zimmer= " + zimmerN +
-				" #Schlafzimmer= " + zimmerS +
+				" #Zimmer= " + zimmer +
 				" Energieklasse= " + getEnergieKlasse();
 	}
 }

@@ -4,23 +4,22 @@ public class Wohnung extends Immobilie{
 	public Wohnung() {
 	}
 
-	public Wohnung(ImmoTyp immoTyp, MietKauf preisMK, int preis, String adresseStrasse, String adresseNummer, String adresseStadt, double flaeche, int zimmerN, int zimmerS, EnergieKlasse energieKlasse) {
-		super(immoTyp, preisMK, preis, adresseStrasse, adresseNummer, adresseStadt, flaeche, zimmerN, zimmerS, energieKlasse);
+	public Wohnung(ImmoTyp immoTyp, MietKauf preisMK, int preis, String adresse,  String stadt, int flaeche, int zimmer, EnergieKlasse energieKlasse) {
+		super(immoTyp, preisMK, preis, adresse, stadt, flaeche, zimmer, energieKlasse);
 	}
 
 
 	@Override
 	public String toString() {
-		return immoTyp.toString() + " " +
+		return 	"ID#" + iD + "_" +
+				immoTyp.toString() + ": " +
 				(this.preisMK == MietKauf.Kauf? "Kauf-": "Miet-") +
 				"Preis " + printPreis(preis) + "€" +
-				"\t - Adresse: " +
-				adresseStrasse + " " +
-				adresseNummer + ", "+
-				adresseStadt +
+				" - Adresse: " +
+				adresse + " " +
+				stadt +
 				" - Fläche= " + flaeche + "m²" +
-				" - #Zimmer= " + zimmerN +
-				" #Schlafzimmer= " + zimmerS +
+				" - #Zimmer= " + zimmer +
 				" - Energieklasse= " + getEnergieKlasse();
 
 	}

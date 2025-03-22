@@ -1,8 +1,5 @@
 package Programm;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 /*
 Class Main:
 Aufrufe Menu un Programm
@@ -13,13 +10,16 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Wohnung prueba = new Wohnung(ImmoTyp.Wohnung,MietKauf.Miete,300,"Nestor Kirchner","123","Santa Cruz",120.00,6,3, Immobilie.charToEnergieKlasse('A'));
+		//Wohnung Objekt
+		Wohnung prueba = new Wohnung(ImmoTyp.Wohnung,MietKauf.Miete,300,"Esperanza 123","Santa Cruz",120,6, Immobilie.charToEnergieKlasse('A'));
+		Dateien.immobilieList.add(prueba);
+
 		//Generation Immo Objekte zu Prüfung
-		Dateien.immoRandomObjekte(2,2,10); // Generiert Random Immo-Objekte
+		//Objekte wird durch Dateien.immoRandomObjekte generiert. Attribute der Methode #Grundstücke, #Wohnungen #Häuser
+		Dateien.immoRandomObjekte(2,2,2); // Generiert Random Immo-Objekte,
 
 		//Ausführung des Programms
 		BenutzerOberflaeche.programm();
-
 
 	}
 }
