@@ -26,14 +26,7 @@ public class BenutzerOberflaeche {
 
 			int option = console.nextInt();
 			console.nextLine();
-			/*
-			 		0. Immo-Liste ausdrucken
-				    1. Immo-Liste nach Kriterien Sortieren
-				    2. Immo-Objekte Filtern
-				    3. Immo-Objekt hinzufügen
-				    4. Immo-Objekt löschen
-				    5. EXIT
-			 */
+
 			switch (option){
 				case 0:
 					System.out.println("Immo Objekte Ausdrucken");
